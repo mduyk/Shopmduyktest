@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Thanh toán</title>
+
+<style>
+body {
+    margin:0;
+    font-family:Arial;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background: radial-gradient(circle, #020617, #000);
+    color:white;
+}
+
+.box{
+    background:#1e293b;
+    padding:30px;
+    width:380px;
+    border-radius:20px;
+    text-align:center;
+    animation: float 3s infinite ease-in-out;
+}
+
+@keyframes float {
+    50% { transform: translateY(-8px); }
+}
+
+.highlight{
+    color:#22c55e;
+    cursor:pointer;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    margin-top:15px;
+    border:none;
+    border-radius:20px;
+    background:#22c55e;
+    color:white;
+}
+
+/* 🔥 dòng thông báo mới */
+.notice{
+    margin-top:15px;
+    padding:10px;
+    background: rgba(34,197,94,0.1);
+    border: 1px solid #22c55e;
+    border-radius:12px;
+    font-size:14px;
+    color:#a7f3d0;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+    <h2>Thanh toán</h2>
+
+    <p><b>Gói:</b> <span id="product"></span></p>
+    <p><b>Số tiền:</b> <span id="price"></span>đ</p>
+
+    <p><b>Ngân hàng:</b> MB Bank</p>
+
+    <p><b>STK:</b>
+        <span class="highlight" onclick="copy('0588807300000')">
+            0588807300000
+        </span>
+    </p>
+
+    <p><b>Chủ TK:</b> Cao Minh Duy</p>
+
+    <p><b>Nội dung:</b>
+        <span id="nd" class="highlight" onclick="copyND()"></span>
+    </p>
+
+    <!-- 🔥 DÒNG THÔNG BÁO -->
+    <div class="notice">
+        ⚠️ Vui lòng ghi số điện thoại của bạn sau nôi dung ck chính
+    </div>
+
+    <button onclick="paid()">Tôi đã thanh toán</button>
+</div>
+
+<script>
+product.innerText = localStorage.getItem("product") || "Gói cơ bản";
+price.innerText = localStorage.getItem("price") || "0";
+
+let nd = "MDUYK" + Math.floor(100000 + Math.random()*900000);
+document.getElementById("nd").innerText = nd;
+
+function copy(t){
+    navigator.clipboard.writeText(t);
+    alert("Đã copy!");
+}
+
+function copyND(){
+    navigator.clipboard.writeText(nd);
+    alert("Đã copy nội dung!");
+}
+
+function paid(){
+    alert("Liên hệ admin nếu lỗi!");
+}
+</script>
+
+</body>
+</html>
